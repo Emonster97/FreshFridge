@@ -24,8 +24,8 @@ function App() {
         timeFrame: 'day'
       },
       headers: {
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-        'X-RapidAPI-Key': 'b94831634emsh9a21cbcbd82614ep1c7f5ejsn5205892eb94d'
+        'X-RapidAPI-Host': '',
+        'X-RapidAPI-Key': ''
       }
     };
     
