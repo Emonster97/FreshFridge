@@ -1,23 +1,53 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react";
+import MealList from "./MealList";
+var axios = require("axios").default;
 
 function App() {
+  const [mealData, setMealData] = useState(null);
+  const [calories, setCalories] = useState(2000);
+
+  function handleChange(e) {
+    setCalories(e.target.value);
+
+  }
+
+  function getMealData() {
+    var options = {
+      method: 'GET',
+      url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
+      params: {
+        exclude: 'shellfish, olives',
+        diet: 'vegetarian',
+        targetCalories: '2000',
+        timeFrame: 'day'
+      },
+      headers: {
+        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+        'X-RapidAPI-Key': 'b94831634emsh9a21cbcbd82614ep1c7f5ejsn5205892eb94d'
+      }
+    };
+    
+    axios.request(options).then(function (response) {
+      setMealData(response.data);
+        console.log(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="controls">
+        <input 
+        type="number"
+        placeholder="Calories (e.g. 2000)"
+        onChange={handleChange}
+        />
+      </section>
+      <button onClick={getMealData}>Get Daily Meal Plan</button>
+      {mealData && <MealList mealData={mealData}/>}
     </div>
   );
 }
