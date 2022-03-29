@@ -1,56 +1,40 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from "react";
-import MealList from "./MealList";
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+
+//Importing components
+import Registr from './components/Registr';
+import Login from './components/Login';
+import Main from './components/Main';
+import PageNotFound from './components/PageNotFound';
+
+//Importing bootstrap and font-awesome
+import 'font-awesome/css/font-awesome.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+
+
+//Importing jquery and bootstrap js
+import "jquery/dist/jquery.min";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
 var axios = require("axios").default;
 
 function App() {
-  const [mealData, setMealData] = useState(null);
-  const [calories, setCalories] = useState(2000);
-
-
-
-  function getMealData() {
-    
-    var options = {
-      method: 'GET',
-      url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
-      params: {
-        exclude: 'shellfish, olives',
-        diet: 'vegetarian', 
-        targetCalories: `${calories}`,
-        timeFrame: 'day'
-      },
-      headers: {
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-        'X-RapidAPI-Key': `${process.env.REACT_APP_SECRET_KEY}`
-      }
-    };
-    
-    axios.request(options).then(function (response) {
-      setMealData(response.data);
-        console.log(response.data);
-    }).catch(function (error) {
-        console.error(error);
-    });
-  }
-
-  function handleChange(e) {
-    setCalories(e.target.value);                             
-  }
 
   return (
-    <div className="App">
-      <section className="controls">
-        <input 
-        type="number"
-        placeholder="Calories (e.g. 2000)"
-        onChange={handleChange}
-        />
-        <button onClick={getMealData}>Generate a Daily Meal Plan</button>
-      </section>
-      {mealData && <MealList mealData={mealData}/>}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Main />}/> 
+          <Route path="/register" element={<Registr />}/> 
+          <Route path="/login" element={<Login />}/> 
+          <Route path="*" element={<PageNotFound/>}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
+   
   );
 }
 
