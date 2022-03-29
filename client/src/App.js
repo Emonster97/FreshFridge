@@ -8,24 +8,22 @@ function App() {
   const [mealData, setMealData] = useState(null);
   const [calories, setCalories] = useState(2000);
 
-  function handleChange(e) {
-    setCalories(e.target.value);
 
-  }
 
   function getMealData() {
+    
     var options = {
       method: 'GET',
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate',
       params: {
         exclude: 'shellfish, olives',
-        diet: 'vegetarian',
-        targetCalories: '2000',
+        diet: 'vegetarian', 
+        targetCalories: `${calories}`,
         timeFrame: 'day'
       },
       headers: {
-        'X-RapidAPI-Host': '',
-        'X-RapidAPI-Key': ''
+        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+        'X-RapidAPI-Key': `${process.env.REACT_APP_SECRET_KEY}`
       }
     };
     
@@ -37,6 +35,10 @@ function App() {
     });
   }
 
+  function handleChange(e) {
+    setCalories(e.target.value);                             
+  }
+
   return (
     <div className="App">
       <section className="controls">
@@ -45,8 +47,8 @@ function App() {
         placeholder="Calories (e.g. 2000)"
         onChange={handleChange}
         />
+        <button onClick={getMealData}>Generate a Daily Meal Plan</button>
       </section>
-      <button onClick={getMealData}>Get Daily Meal Plan</button>
       {mealData && <MealList mealData={mealData}/>}
     </div>
   );
