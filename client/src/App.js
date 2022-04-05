@@ -13,8 +13,6 @@ import PageNotFound from './components/PageNotFound';
 import 'font-awesome/css/font-awesome.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-
 //Importing jquery and bootstrap js
 import "jquery/dist/jquery.min";
 import "bootstrap/dist/js/bootstrap.bundle.min";
