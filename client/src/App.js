@@ -8,6 +8,8 @@ import Registr from './components/Registr';
 import Login from './components/Login';
 import Main from './components/Main';
 import PageNotFound from './components/PageNotFound';
+import Favourites from './components/Favourites';
+import History from './components/History';
 
 //Importing bootstrap and font-awesome
 import 'font-awesome/css/font-awesome.css';
@@ -18,6 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Importing jquery and bootstrap js
 import "jquery/dist/jquery.min";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+
 
 var axios = require("axios").default;
 
@@ -31,6 +34,8 @@ function App() {
           <Route path="/register" element={<Registr />}/> 
           <Route path="/login" element={<Login />}/> 
           <Route path="*" element={<PageNotFound/>}/>
+          <Route path="/favourites" element={<Favourites/>}/>
+          <Route path="/history" element={<History/>}/>
         </Routes>
       </div>
     </BrowserRouter>
