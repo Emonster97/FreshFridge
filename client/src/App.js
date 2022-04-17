@@ -11,6 +11,7 @@ import PageNotFound from './components/PageNotFound';
 import Favourites from './components/Favourites';
 import History from './components/History';
 import Info from './components/Info';
+import NavBar from './components/NavBar';
 
 //Importing providers
 import { authContext } from './providers/AuthProvider';
@@ -30,8 +31,11 @@ function App() {
   const { auth, user, login, logout } = useContext(authContext);
 
   return (
+    <>
     <BrowserRouter>
+    <NavBar />
       <div className="App">
+     
         <Routes>
           <Route path="/" element={ <Main />}/> 
           <Route path="/register" element={<Registr />}/> 
@@ -41,8 +45,10 @@ function App() {
           <Route path="/favourites" element={<Favourites/>}/>
           <Route path="/history" element={<History/>}/>
         </Routes>
+        
       </div>
     </BrowserRouter> 
+    </>
   );
 }
 
