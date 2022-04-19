@@ -42,7 +42,7 @@ var axios = require("axios").default;
          <li>Preperation time: {meal.readyInMinutes} minutes</li>
          <li>Number of Servings: {meal.servings}</li>
          <br/>
-         {!fav && <li><button onClick={favoriteMeal}>Favourite</button></li>}
+         {!fav && <li><button class="btn btn-primary" type ="button" onClick={favoriteMeal}>Favourite</button></li>}
          {fav && <li>Favourited!</li>}
        </ul>
 

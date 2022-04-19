@@ -30,7 +30,7 @@ var axios = require("axios").default;
          <li>Recipe ID: {meal.id}</li>
        </ul>
 
-       <a href={meal.sourceUrl}>Go to Recipe</a>
+       <a href={meal.sourceurl}>Go to Recipe</a>
      </article>
    )
  }

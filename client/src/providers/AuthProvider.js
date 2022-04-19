@@ -13,7 +13,7 @@ export default function AuthProvider(props) {
     const id = "1";  // Some random userId
     setUser({ email, id, name: "Wilfred Emonts", age: 25, weight: 180, height: 72, exercise:1.2,
     goal:0, exclusions:"",
-    diet:"" });
+    diet:"Vegetarian" });
   };
 
   const logout = function() {

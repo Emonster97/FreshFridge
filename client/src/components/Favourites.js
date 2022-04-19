@@ -38,13 +38,13 @@ export default function Favourites() {
   }
 
   return (
-    <div className="App">
+    <div className="Favourites">
       <h1><u>Favourites list</u></h1><br/><br/>
-      <ul>
-        {favourites.map(item =>
-          <li key={item.recipe_id} id={item.recipe_id}>
-            <h3>{item.title}</h3>
-            <a href={item.sourceurl}>{item.sourceurl}</a><button onClick={clickUnfavorite}>Unfavourite</button>
+      <ul className="favlist">
+        {favourites.map((item, index) =>
+          <li key={index} id={item.recipe_id}>
+            <h3>{item.title}</h3><br/><br/>
+            Recipe Link:<a href={item.sourceurl}>{item.sourceurl}</a><br/><br/><button type="button" class="btn btn-primary"onClick={clickUnfavorite}>Unfavourite</button><hr></hr>
           </li>
         )}
       </ul>

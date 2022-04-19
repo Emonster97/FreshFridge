@@ -69,7 +69,7 @@ export default function Info() {
       <div className="UserInfo">
         
       <section className="controls">
-        You are logged in as {user.name}<br/>
+        The Current User is {user.name}<br/>
         Email: {user.email}<br/>
         User Id: {user.id}<br/>
         Height: {user.height} in<br/>

@@ -47,17 +47,18 @@ export default function History() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="History">
       <h1><u>Recipe History</u></h1><br/><br/>
-      <ul>
-        {meals.map(item =>
-          <li key={item.recipe_id} id={item.recipe_id}>
-            <h3>{item.title}</h3>
-            <a href={item.sourceurl}>{item.sourceurl}</a>
+      <ul className="histlist">
+        {meals.map((item, index) =>
+          <li key={index} id={item.recipe_id}>
+            <h3>{item.title}</h3><br/>
+           Recipe Link: <a href={item.sourceurl}>{item.sourceurl}</a>
+           <br/>
             {item.fav == true ? 
             <p>Favourited!</p>
            :
-           <button onClick={favoriteMeal}>Favourite</button>}
+           <button type="button" class="btn btn-primary" onClick={favoriteMeal}>Favourite</button>}<br/><br/><hr></hr>
           </li>
         )}
       </ul>
