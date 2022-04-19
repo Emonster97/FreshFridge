@@ -14,7 +14,7 @@ export default function NavBar() {
         <div>
 
             <Navbar bg="dark" variant={"dark"} expand="lg">
-                <Navbar.Brand href="#">NutriPlanner</Navbar.Brand>
+                <Navbar.Brand >NutriPlanner</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -22,10 +22,10 @@ export default function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/main")}>Home</Nav.Link>
                         <Nav.Link onClick={() => navigate("/favourites")}>Favourites</Nav.Link>
                         <Nav.Link onClick={() => navigate("/history")}>History</Nav.Link>
-                        {!auth && <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>}
+                        {!auth && <Nav.Link onClick={() => navigate("/")}>Login</Nav.Link>}
                         {auth && <Nav.Link onClick={() => navigate("/info")}>User Info</Nav.Link>}
 
                     </Nav>

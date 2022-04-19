@@ -12,6 +12,8 @@ import Favourites from './components/Favourites';
 import History from './components/History';
 import Info from './components/Info';
 import NavBar from './components/NavBar';
+import PleaseLogin from './components/PleaseLogin';
+
 
 //Importing providers
 import { authContext } from './providers/AuthProvider';
@@ -37,13 +39,17 @@ function App() {
       <div className="App">
      
         <Routes>
-          <Route path="/" element={ <Main />}/> 
+          { auth && <Route path="/main" element={<Main />}/> }
+          { !auth &&  <Route path="/main" element={<PleaseLogin />}/> }
           <Route path="/register" element={<Registr />}/> 
-          <Route path="/login" element={!auth && <Login login={login} />}/> 
+          { !auth && <Route path="/" element={<Login login={login} />}/>}
+          {auth && <Route path="/" element={<PleaseLogin login={login} />}/> }
           <Route path="/info" element={<Info logout={logout} user={user} />}/> 
           <Route path="*" element={<PageNotFound/>}/>
-          <Route path="/favourites" element={<Favourites/>}/>
-          <Route path="/history" element={<History/>}/>
+          { auth && <Route path="/favourites" element={<Favourites/>}/> }
+          { !auth &&  <Route path="/favourites" element={<PleaseLogin />}/> }
+          { auth && <Route path="/history" element={<History/>}/> }
+          { !auth &&  <Route path="/history" element={<PleaseLogin />}/> }
         </Routes>
         
       </div>

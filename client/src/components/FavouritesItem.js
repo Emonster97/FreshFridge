@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 var axios = require("axios").default;
 
- export default function Meal({ meal }) {
+ export default function FavouritesItem({ meal }) {
 
   const [imageUrl, setImageUrl] = useState("");
-  const [fav, setFav] = useState(false);
-
-  function historyMeal() {
-    axios.post("http://localhost:8081/api/history", {meal_id: meal.id, meal_title: meal.title, meal_sourceurl: meal.sourceUrl});
-  }
 
   useEffect (() => {
     var options = {
@@ -21,29 +16,18 @@ var axios = require("axios").default;
     };
     
     axios.request(options).then(function (response) {
-      historyMeal();
       setImageUrl(response.data.image);
         console.log(response.data);
     }).catch(function (error) {
         console.error(error);
     });
-  }, [meal.id]);
-
-  function favoriteMeal() {
-    setFav(true);
-    axios.post("http://localhost:8081/api/favourites", {meal_id: meal.id, meal_title: meal.title, meal_sourceurl: meal.sourceUrl});
-  }
+  }, [meal.id])
 
    return (
      <article>
        <h1>{meal.title}</h1>
-       <img src={imageUrl} alt="recipe" />
        <ul>
-         <li>Preperation time: {meal.readyInMinutes} minutes</li>
-         <li>Number of Servings: {meal.servings}</li>
-         <br/>
-         {!fav && <li><button onClick={favoriteMeal}>Favourite</button></li>}
-         {fav && <li>Favourited!</li>}
+         <li>Recipe ID: {meal.id}</li>
        </ul>
 
        <a href={meal.sourceUrl}>Go to Recipe</a>

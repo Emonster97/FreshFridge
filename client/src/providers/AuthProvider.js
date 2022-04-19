@@ -5,12 +5,15 @@ export const authContext = createContext();
 export default function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState(null);
+  // is setUser even being passed properly
 
   // Perform login process for the user & save authID, etc
   const login = function(email, password) {
     setAuth(true);
-    const id = "1234-1234-1234";  // Some random userId
-    setUser({ email, id, name: "Test User" });
+    const id = "1";  // Some random userId
+    setUser({ email, id, name: "Wilfred Emonts", age: 25, weight: 180, height: 72, exercise:1.2,
+    goal:0, exclusions:"",
+    diet:"" });
   };
 
   const logout = function() {
@@ -19,7 +22,7 @@ export default function AuthProvider(props) {
   };
 
   // authContext will expose these items
-  const userData = { auth, user, login, logout };
+  const userData = { auth, user, login, logout, setUser };
 
   // We can use this component to wrap any content we want to share this context
   return (

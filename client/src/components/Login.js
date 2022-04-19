@@ -12,8 +12,10 @@ export default function Login() {
 
   const onSubmit = function(event) {
     event.preventDefault();
-    email && login(email, password);
-    history("/info");
+    if (email != "") {
+      email && login(email, password);
+      history("/info");
+    }
   };
 
 
@@ -22,7 +24,7 @@ export default function Login() {
       <form onSubmit={onSubmit}>
         <p>
           <input type="text" name="username"
-            value={email} placeholder="Enter Username or email"
+            value={email} placeholder="Enter Your Email"
             onChange={event => setEmail(event.target.value)} />
         </p>
         <p>

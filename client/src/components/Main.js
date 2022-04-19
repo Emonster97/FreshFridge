@@ -1,18 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { authContext } from '../providers/AuthProvider';
 import MealList from "./MealList";
 var axios = require("axios").default;
 
 function Main () {
+//add thing where if no auth we get the login page so that the render error stop
+
   const [mealData, setMealData] = useState(null);
   const [calories, setCalories] = useState(2000);
-  const [user, setUser] = useState({
-    weight:230, 
+  const { user, setUser, auth } = useContext(authContext);
+ /* setUser({ weight:180, 
     height:73,
     age:35,
-    exercise:1.725,
+    exercise:1.2,
     goal:0,
-    diet:"vegetarian"
-  });
+    diet:"vegetarian"});
+  */
 
   //Check for when user.diet updates
   useEffect(() => {
@@ -81,6 +84,7 @@ function Main () {
     axios.request(options).then(function (response) {
       setMealData(response.data);
         console.log(response.data);
+        //I need to get the recipe IDs for the history and favourites list
     }).catch(function (error) {
         console.error(error);
     });
@@ -93,13 +97,13 @@ function Main () {
         <form className="form-group">
             <label htmlFor="dietPlan">Choose a diet plan:</label>
             <select value={user.diet} id="dietPlan" className="custom-select form-control" onChange={(e) => dietPlan(e.target.value)}>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="vegan">Vegan</option>
-              <option value="ketogenic">Ketogenic</option>
-              <option value="pescetarian">Pescetarian</option>
-              <option value="primal">Primal</option>
-              <option value="paleo">Paleo</option>
-              <option value="whole30">Whole-30</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Ketogenic">Ketogenic</option>
+              <option value="Pescetarian">Pescetarian</option>
+              <option value="Primal">Primal</option>
+              <option value="Paleo">Paleo</option>
+              <option value="Whole30">Whole-30</option>
             </select>
           </form>
           <form className="form-group">

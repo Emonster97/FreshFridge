@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 //This needs to be populated with the recipes from the current meal plan 
 const data = [
-  { id: 1, name: "Recipe 1" },
-  { id: 2, name: "Recipe 2" },
-  { id: 3, name: "Recipe 3" }
 ];
+
+//GET https://api.spoonacular.com/recipes/{id}/information
+//show recipe link and title meal.title meal.sourceUrl
 
 export default function Favourites() {
   const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
-    setFavourites(data);
+    axios.get("http://localhost:8081/api/favourites").then(res => {
+      setFavourites(res.data);
+    })
   }, []);
 
   useEffect(() => {
@@ -26,28 +29,23 @@ export default function Favourites() {
     setFavourites(newFavourites);
   }
 
+  function clickUnfavorite(event) {
+    let id = event.target.parentElement.id;
+    axios.delete("http://localhost:8081/api/favourites", { data: { recipe_id: id } }).then(res => {
+      console.log(res);
+      setFavourites(res.data);
+    });
+  }
+
   return (
     <div className="App">
-      <h1>Your Current Meal Plan</h1>
-      <ul>
-        {favourites.map((item, i) => (
-          <li key={i}>
-            {item.name}{" "}
-            <button
-              onClick={() => {
-                handleFavourite(item.id);
-              }}
-            >
-              {item.favourite === true ? "Remove" : "Add to Favourites"}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      <h1>Favourite list</h1>
+      <h1><u>Favourites list</u></h1><br/><br/>
       <ul>
         {favourites.map(item =>
-          item.favourite === true ? <li key={item.id}>{item.name}</li> : null
+          <li key={item.recipe_id} id={item.recipe_id}>
+            <h3>{item.title}</h3>
+            <a href={item.sourceurl}>{item.sourceurl}</a><button onClick={clickUnfavorite}>Unfavourite</button>
+          </li>
         )}
       </ul>
     </div>
