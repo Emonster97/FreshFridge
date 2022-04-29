@@ -1,6 +1,6 @@
 // -- routes/catRoutes.js
 const router = require('express').Router();
-
+//yes
 module.exports = (db) => {
   // all routes will go here 
   router.get('/', (req, res) => {
@@ -12,3 +12,5 @@ module.exports = (db) => {
 
   return router;
 }
+//set up user with all needed params
+//change front-end context to start using the backend database for all user info
