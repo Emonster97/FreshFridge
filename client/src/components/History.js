@@ -58,7 +58,7 @@ export default function History() {
             {item.fav == true ? 
             <p>Favourited!</p>
            :
-           <button type="button" class="btn btn-primary" onClick={favoriteMeal}>Favourite</button>}<br/><br/><hr></hr>
+           <button type="button" className="btn btn-primary" onClick={favoriteMeal}>Favourite</button>}<br/><br/><hr></hr>
           </li>
         )}
       </ul>

@@ -94,7 +94,7 @@ function Main () {
     <div className="Main">
       <br/><br/>
       <h3>Nutriplanner Meal Plan Calculator</h3>
-      <p>Nutriplanner will use your BMR to calculate a meal plan that will adhere to your caloric targets and dietary needs.</p><hr></hr>
+      <p>Nutriplanner will use your BMR (basal metabolic rate) to calculate a meal plan that will adhere to your caloric targets and dietary needs.</p><hr></hr>
       <section className="controls">
         <div className="dropdown">
         <form className="form-group">

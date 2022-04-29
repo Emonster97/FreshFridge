@@ -44,7 +44,7 @@ export default function Favourites() {
         {favourites.map((item, index) =>
           <li key={index} id={item.recipe_id}>
             <h3>{item.title}</h3><br/><br/>
-            Recipe Link:<a href={item.sourceurl}>{item.sourceurl}</a><br/><br/><button type="button" class="btn btn-primary"onClick={clickUnfavorite}>Unfavourite</button><hr></hr>
+            Recipe Link:<a href={item.sourceurl}>{item.sourceurl}</a><br/><br/><button type="button" className="btn btn-primary"onClick={clickUnfavorite}>Unfavourite</button><hr></hr>
           </li>
         )}
       </ul>
